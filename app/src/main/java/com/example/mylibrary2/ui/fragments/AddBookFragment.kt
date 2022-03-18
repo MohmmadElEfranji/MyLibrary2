@@ -13,6 +13,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
@@ -70,7 +71,6 @@ class AddBookFragment : Fragment() {
 
         //endregion
 
-
         // region Change actionBar color
         val colorDrawable = ColorDrawable(Color.parseColor("#FFB300"))
         (activity as AppCompatActivity?)!!.supportActionBar!!.setBackgroundDrawable(colorDrawable)
@@ -100,16 +100,20 @@ class AddBookFragment : Fragment() {
         binding.btnAddBook.setOnClickListener {
 
 
-
-
             val idBook = bookCollectionRef.document().id
             val bookName = binding.edBookName.text.toString()
             val bookAuthor = binding.edBookAuthor.text.toString()
             val launchYear = binding.edLaunchYear.text
             val price = binding.edPrice.text.toString()
             val rate = mRate
+            val bookImage = binding.edBookCover.text.toString()
 
-            if (bookName.isNotEmpty() && bookAuthor.isNotEmpty() && launchYear.isNotEmpty() && price.isNotEmpty()) {
+
+
+            if (bookName.isNotEmpty() && bookAuthor.isNotEmpty() && launchYear.isNotEmpty() && price.isNotEmpty() && bookImage == getString(
+                    R.string.imageSelected
+                )
+            ) {
                 val dateString = launchYear.toString()
                 val formatter = SimpleDateFormat("yyyy", Locale.UK)
                 val mLaunchYear = formatter.parse(dateString) as Date
@@ -128,8 +132,6 @@ class AddBookFragment : Fragment() {
                     price.toDouble(),
                     rate
                 )
-                binding.progressBar.visibility = View.VISIBLE
-
                 MaterialAlertDialogBuilder(
                     requireActivity(),
                     R.style.MyThemeOverlay_MaterialComponents_MaterialAlertDialog
@@ -139,8 +141,10 @@ class AddBookFragment : Fragment() {
                     .setMessage("Do you want to Add this book?")
                     .setNegativeButton("No") { dialog, _ ->
                         dialog.dismiss()
+                        binding.progressBar.visibility = View.GONE
                     }
                     .setPositiveButton("Yes") { _, _ ->
+                        binding.progressBar.visibility = View.VISIBLE
                         addBook(book)
                         val uploadTask = spaceRef.putStream(stream)
                         uploadTask.addOnFailureListener { e ->

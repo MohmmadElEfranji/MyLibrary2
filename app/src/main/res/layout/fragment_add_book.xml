@@ -37,9 +37,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/ed_shape"
-            android:hint="Book name"
             android:fontFamily="@font/c"
+            android:hint="Book name"
+            android:imeOptions="actionNext"
             android:padding="19dp"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="#878686" />
 
@@ -49,9 +51,11 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/ed_shape"
-            android:hint="Book author"
-            android:padding="19dp"
             android:fontFamily="@font/c"
+            android:hint="Book author"
+            android:imeOptions="actionNext"
+            android:padding="19dp"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="#878686" />
 
@@ -62,11 +66,13 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/ed_shape"
+            android:fontFamily="@font/c"
             android:hint="Launch year"
+            android:imeOptions="actionNext"
             android:inputType="date"
             android:maxLength="4"
-            android:fontFamily="@font/c"
             android:padding="19dp"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="#878686" />
 
@@ -76,10 +82,12 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/ed_shape"
+            android:fontFamily="@font/c"
             android:hint="Price"
+            android:imeOptions="actionDone"
             android:inputType="number"
             android:padding="15dp"
-            android:fontFamily="@font/c"
+            android:singleLine="true"
             android:textColor="@color/black"
             android:textColorHint="#878686" />
 
@@ -89,14 +97,15 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:background="@drawable/ed_shape"
+            android:drawableEnd="@drawable/ic_upload_image"
+            android:focusable="false"
+            android:fontFamily="@font/c"
             android:hint="Upload Book Cover"
             android:padding="15dp"
-            android:fontFamily="@font/c"
-            android:focusable="false"
-            android:textStyle="bold"
-            android:drawableEnd="@drawable/ic_upload_image"
             android:textColor="@color/black"
-            android:textColorHint="#878686" />
+            android:textColorHint="#878686"
+            android:textStyle="bold" />
+
         <RatingBar
             android:id="@+id/rb_ratingBar"
             android:layout_width="wrap_content"
